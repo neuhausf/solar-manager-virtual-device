@@ -23,4 +23,4 @@ EXPOSE 80
 
 USER node
 
-CMD ["node", "dist/app.js"]
+ENTRYPOINT ["node", "dist/app.js"]
