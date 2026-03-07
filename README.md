@@ -20,14 +20,40 @@ This node module is able to mock a MyStrom Switch device to be used with the Sol
 
 ### Virtual Device Setup (this module)
 
-This module can be used within a Docker container. For example, the following Dockerfile can be used to build a Docker image for the virtual device. It's recommended to use a dedicated external network like a `macvlan` to have a dedicated IP address for the virtual device, as it's required to use port 80.
+This module can be used within a Docker container. The pre-built container image is published to the GitHub Container Registry as `ghcr.io/neuhausf/solar-manager-virtual-device`.
 
-```Dockerfile
-FROM node:alpine
+Because the Solar Manager communicates with the virtual device over port 80, each virtual device must have its own dedicated IP address. The recommended approach is to attach the containers to a `macvlan` network so that every container appears as an independent device on the local network.
 
-RUN npm install -g solar-manager-virtual-device
+Adjust the `parent` interface, the `subnet`, the `gateway`, and the `ip_range` (the range reserved for containers, must not overlap with addresses already used by other hosts) to match your network configuration, then assign a unique `ipv4_address` to each virtual device.
 
-ENTRYPOINT [ "/usr/local/bin/solar-manager-virtual-device", "/etc/solar-manager-virtual-device.json" ]
+```yaml
+services:
+  virtual-device-1:
+    image: ghcr.io/neuhausf/solar-manager-virtual-device:1
+    container_name: virtual-device-1
+    restart: unless-stopped
+    networks:
+      macvlan:
+        ipv4_address: 192.168.1.201
+
+  virtual-device-2:
+    image: ghcr.io/neuhausf/solar-manager-virtual-device:1
+    container_name: virtual-device-2
+    restart: unless-stopped
+    networks:
+      macvlan:
+        ipv4_address: 192.168.1.202
+
+networks:
+  macvlan:
+    driver: macvlan
+    driver_opts:
+      parent: eth0
+    ipam:
+      config:
+        - subnet: 192.168.1.0/24
+          gateway: 192.168.1.1
+          ip_range: 192.168.1.200/29
 ```
 
 ### Solar Manager Configuration
