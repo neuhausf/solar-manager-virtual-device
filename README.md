@@ -58,7 +58,7 @@ networks:
 
 ### Solar Manager Configuration
 
-Within the Solar Manager, a new device can be added with the type `Smart Plug` and the name `MyStrom Energy Control Switch`. Specify the IP address of the virtual device as the `IP Address` field. The temperature field reported by the virtual device can be updated via the `/temperature` endpoint and will be visible in the Solar Manager.
+Within the Solar Manager, a new device can be added with the type `Smart Plug` and the name `MyStrom Energy Control Switch`. Specify the IP address of the virtual device as the `IP Address` field. The temperature field reported by the virtual device can be updated via the `/temperature` endpoint and will be usable in the Solar Manager.
 
 ### Node-RED Integration
 
