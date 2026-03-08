@@ -36,4 +36,15 @@ const setPower = async (req: Request, res: Response) => {
   }
 };
 
-export default { getReport, setRelay, toggleRelay, setPower };
+const setTemperature = async (req: Request, res: Response) => {
+  const switchInstance = MyStromSwitch.getInstance();
+  const temperature = parseFloat(req.body.temperature);
+  if (!isNaN(temperature)) {
+    switchInstance.setTemperature(temperature);
+    return res.status(200).json();
+  } else {
+    return res.status(400).json();
+  }
+};
+
+export default { getReport, setRelay, toggleRelay, setPower, setTemperature };

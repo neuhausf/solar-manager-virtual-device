@@ -21,4 +21,8 @@ router.get('/toggle', controller.toggleRelay);
 // POST /power
 router.post('/power', controller.setPower);
 
+// Set Temperature
+// POST /temperature
+router.post('/temperature', controller.setTemperature);
+
 export = router;
