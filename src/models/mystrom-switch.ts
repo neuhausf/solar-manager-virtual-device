@@ -23,6 +23,7 @@ export class MyStromSwitch {
 
   private power = 0;
   private relay = false;
+  private temperature = 0;
 
   /**
    * Support the singleton pattern.
@@ -47,7 +48,7 @@ export class MyStromSwitch {
       power: this.power,
       Ws: 0,
       relay: this.relay,
-      temperature: 0,
+      temperature: this.temperature,
     };
   }
 
@@ -73,5 +74,9 @@ export class MyStromSwitch {
 
   public setPower(power: number): void {
     this.power = power;
+  }
+
+  public setTemperature(temperature: number): void {
+    this.temperature = temperature;
   }
 }
