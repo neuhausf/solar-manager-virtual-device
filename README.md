@@ -74,14 +74,14 @@ A ready-to-use bridge between the Solar Manager virtual device and MyStrom devic
 
 The following methods are available. All follow the exact API implementation as the official [MyStrom Switch](https://api.mystrom.ch/#982cf1bb-c873-4f62-b3c2-1cdfa51e1afe) API. Except the `/power` and `/temperature` resources, these are used to set the current power consumption and temperature of the device.
 
-| Method | Resource             | Body                      | Response        |
-| ------ | -------------------- | ------------------------- | --------------- |
-| `GET`  | `/report`            |                           | Device state    |
-| `GET`  | `/relay?state=1`     |                           |                 |
-| `GET`  | `/relay?state=0`     |                           |                 |
-| `GET`  | `/toggle`            |                           | The relay state |
-| `POST` | `/power`             | `{ "power": 42 }`         |                 |
-| `POST` | `/temperature`       | `{ "temperature": 21.5 }` |                 |
+| Method | Resource         | Body                      | Response        |
+| ------ | ---------------- | ------------------------- | --------------- |
+| `GET`  | `/report`        |                           | Device state    |
+| `GET`  | `/relay?state=1` |                           |                 |
+| `GET`  | `/relay?state=0` |                           |                 |
+| `GET`  | `/toggle`        |                           | The relay state |
+| `POST` | `/power`         | `{ "power": 42 }`         |                 |
+| `POST` | `/temperature`   | `{ "temperature": 21.5 }` |                 |
 
 ## Constraint
 
